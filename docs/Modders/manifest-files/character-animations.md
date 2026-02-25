@@ -1,4 +1,42 @@
-# Change animations
+# Character animations
+There are 2 ways to add animations to characters:
+
+## Default animations
+
+The animation files are referenced via main manifest in the defaultAnimations array section. You can add as many as you want, and all the loaded characters will have these animations:
+
+```json!
+{
+  "defaultAnimations":[
+    {
+      "name": "T-Pose",
+      "description": "1_T-Pose",
+      "location":"./animations/T-Pose.fbx",
+      "icon": "|"
+    },
+    {
+      "name": "Idle",
+      "description": "Basic Dance Animation",
+      "location":"./animations/2_Idle.fbx",
+      "icon": "|"
+    },
+    {
+      "name": "Walking",
+      "description": "Basic Walk Animation",
+      "location":"./animations/3_Walking.fbx",
+      "icon": "|"
+    },
+    {
+      "name": "Waving",
+      "description": "Basic Waving Animation",
+      "location":"./animations/4_Waving.fbx",
+      "icon": "|"
+    }
+  ]
+}
+```
+
+## Per character animations
 
 The animation files are referenced via `animationPath` in the manifest.json file, here's an example ([source](https://github.com/M3-org/loot-assets/blob/main/loot/models/manifest.json)):
 

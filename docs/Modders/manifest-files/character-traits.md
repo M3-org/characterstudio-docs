@@ -59,7 +59,7 @@ Alternative subfolder location where thumbnails for traits will be loaded from:
 Example:
 
 ```json
-"traitsDirectory":"/traitsThumbnails/"
+"thumbnailsDirectory":"/traitsThumbnails/"
 ```
 
 Character studio will search on assetLocation + thumbnailsDirectory: 
@@ -70,17 +70,17 @@ Character studio will search on assetLocation + thumbnailsDirectory:
 ### traitIconsDirectorySvg
 *optional string*
 
-Alternative subfolder location where thumbnails for traits will be loaded from:
+Alternative subfolder location where SVG icons for traits will be loaded from:
 
 Example:
 
 ```json
-"traitsDirectory":"/traitsThumbnails/"
+"traitIconsDirectorySvg":"/traitIcons/"
 ```
 
-Character studio will search on assetLocation + thumbnailsDirectory: 
+Character studio will search on assetLocation + traitIconsDirectorySvg: 
 
-```./character-assets/traitThumbnails/```
+```./character-assets/traitIcons/```
 
 ### animationPath
 *optional string array*
@@ -106,6 +106,29 @@ Example:
 "displayScale":0.7
 ```
 
+### exportScale
+*optional number*
+
+Scale value for the exported model, default is 1
+
+Example:
+```json
+"exportScale":0.7
+```
+
+### initialTraits
+*optional object*
+
+Initial traits that will be selected when the character is loaded. Keys are trait group IDs and values are trait IDs.
+
+Example:
+```json
+"initialTraits": {
+    "BODY": "Feminine",
+    "CLOTHING": "Dress"
+}
+```
+
 ### requiredTraits
 *optional string array*
 
@@ -119,7 +142,7 @@ Example:
 ### randomTraits
 *optional string array*
 
-Trait group names that will be randomized when clicking ransomize button. Trait group names are defined inside trait collections.
+Trait group names that will be randomized when clicking randomize button. Trait group names are defined inside trait collections.
 
 Example:
 ```json
@@ -226,150 +249,47 @@ Example:
 "offset":[0.0,0.1,0.0]
 ```
 
-___
+### canDownload
+*optional boolean*
 
-## download options
-*optional object data*
+Whether the character can be downloaded. Default is true.
+
+Example:
+```json
+"canDownload": false
+```
+
+### downloadOptions
+*optional object*
 
 Includes export download options for final downloaded 3d model.
 
 ```json
 "downloadOptions":{
-    
-    ...(options from below)
+    "scale": 0.7,
+    "exportStdAtlas": true,
+    "exportMtoonAtlas": true,
+    "mToonAtlasSize": 2048,
+    "mToonAtlasSizeTransp": 2048,
+    "stdAtlasSize": 2048,
+    "stdAtlasSizeTransp": 2048,
+    "screenshotFaceDistance": 1.0,
+    "screenshotFaceOffset": [0, 0, 0],
+    "screenshotResolution": [512, 512],
+    "screenshotBackground": [0.1, 0.1, 0.1],
+    "screenshotFOV": 75
 }
 ```
 
-### scale
-*optional number*
-
-Default export scale value for character when downloading, default is 1
-
-Example:
-```json
-"scale":0.7
-```
-
-### exportStdAtlas
-*optional boolean*
-
-should final model export standard material? default is False
-
-Example:
-```json
-"exportStdAtlas":true
-```
-
-### exportMtoonAtlas
-*optional boolean*
-
-should final model export mToon material? default is True
-
-Example:
-```json
-"exportMtoonAtlas":true
-```
-
-### mToonAtlasSize
-*optional number*
-
-Atlas size for final mToon atlas download image, default is 2048 (use square numbers)
-
-Example:
-```json
-"mToonAtlasSize":4096
-```
-
-
-### mToonAtlasSizeTransp
-*optional number*
-
-Atlas size for final transparent mToon atlas download image, default is 2048 (use square numbers)
-
-Example:
-```json
-"mToonAtlasSizeTransp":4096
-```
-
-### stdAtlasSize
-*optional number*
-
-Atlas size for final standard atlas material download image, default is 2048 (use square numbers)
-
-Example:
-```json
-"stdAtlasSize":4096
-```
-
-### stdAtlasSizeTransp
-*optional number*
-
-Atlas size for final transparent standard atlas material download image, default is 2048 (use square numbers)
-
-Example:
-```json
-"stdAtlasSizeTransp":4096
-```
-
-
-### screenshotFaceDistance
-*optional number*
-
-Distance the camera will take a portrait screenshot for portrait image, default is 1
-
-Example:
-```json
-"screenshotFaceDistance":0.8
-```
-
-### screenshotFaceOffset
-*optional array[3] number*
-
-Set an offset value (x,y,z) to the camera face screenshot.
-
-Example:
-```json
-"screenshotFaceOffset":[0,0.1,0]
-```
-### screenshotResolution
-*optional array[2] number*
-
-Set the resolution of final portrait image of downloaded vrm, default is [512,512] (use square numbers)
-
-Example:
-```json
-"screenshotResolution":[256,256]
-```
-### screenshotBackground
-*optional array[3] number*
-
-Sets a background color for the portrait image (rgb). values are from 0 to 1. default is [0.1,0.1,0.1]
-
-Example:
-```json
-"screenshotBackground":[0.8,0.8,0.8]
-```
-### screenshotFOV
-*optional number*
-
-Set camera FOV for vrm portrait screenshot. Default is 75.
-
-Example:
-```json
-"screenshotFOV":80
-```
-
-
-
 ### vrmMeta
-*optional object data*
+*optional object*
 
 Metadata that will be saved to final VRM file after download happens.
 
 Example:
 ```json
 "vrmMeta":{
-    "authors":["Memelotsqui"],
+    "authors":["Author Name"],
     "version":"v1",
     "commercialUssageName": "personalNonProfit",
     "contactInformation": "https://example.com/", 
@@ -381,6 +301,89 @@ Example:
     "allowRedistribution":false,
     "modification":"prohibited"
 }
+```
+
+### chainName
+*optional string*
+
+Name of the blockchain chain for NFT integration.
+
+Example:
+```json
+"chainName": "ethereum"
+```
+
+### collectionLockID
+*optional string*
+
+ID for locking the collection.
+
+Example:
+```json
+"collectionLockID": "my-collection-123"
+```
+
+### dataSource
+*optional string*
+
+Source of the data for the collection. ("attributes", "image", "none")
+
+Example:
+```json
+"dataSource": "attributes"
+```
+
+### solanaPurchaseAssets
+*optional object*
+
+Configuration for Solana purchase assets.
+
+Example:
+```json
+"solanaPurchaseAssets": {
+    "collectionAddress": "Add",
+    "merkleTreeAddress":"AnrgANw3znNQ52TyAmBth7kqeTxbacyS8bWwezS6XP9J"
+}
+```
+
+### price
+*optional number*
+
+Default price all assets of the character in the specified currency.
+
+Example:
+```json
+"price": 10.99
+```
+
+### currency
+*optional string*
+
+Currency for the price.
+
+Example:
+```json
+"currency": "USD"
+```
+
+### purchasable
+*optional boolean*
+
+Whether the default value of the assets is set to purchsable or not
+
+Example:
+```json
+"purchasable": true
+```
+
+### locked
+*optional boolean*
+
+Whether the default value of the assets is set to locked or not
+
+Example:
+```json
+"locked": false
 ```
 
 ___
@@ -426,7 +429,7 @@ Display name for this group trait.
 Example:
 
 ```json
-"trait":"Skin"
+"name":"Skin"
 ```
 
 ### iconSvg
@@ -609,7 +612,7 @@ ___
 Used to define a collections of colors that can be assigned to specific traits.
 
 ```json
-  "textureCollections": [
+  "colorCollections": [
     {
       "trait": "SKIN_COLORS",
       "collection": [...]
@@ -633,6 +636,43 @@ An array of all the textures that will be available for this texture trait id.
           "id": "EMERALD",
           "name": "Emerald",
           "value":["#7BFFBA"]
+    }
+]
+```
+
+___
+
+## Decal Collection Section (decalCollections):
+Used to define a collections of decals that can be assigned to specific traits.
+
+```json
+  "decalCollections": [
+    {
+      "trait": "DECALS",
+      "collection": [...]
+    }
+]
+```
+
+### collection (decals)
+
+An array of all the decals that will be available for this decal trait id.
+
+**id *(required string)***: Unique ID for this decal trait (can be used by nft metadata to fetch this value by id).
+
+**name *(optional string)***: Display Name for this decal trait.
+
+**directory *(required string)***: Relative location of the decal texture file.
+
+**thumbnail *(optional string)***: Relative location of the thumbnail for this decal.
+
+```json
+"collection": [
+    {
+          "id": "STAR_DECAL",
+          "name": "Star",
+          "directory": "decals/star.png",
+          "thumbnail": "decals/star_thumb.png"
     }
 ]
 ```

@@ -15,13 +15,14 @@ const sidebars = {
       type: 'category',
       label: 'Modders',
       items: [
+        'Modders/getting-started',
         {
           type: 'link',
           label: 'Sample Files',
           href: 'https://github.com/m3-org/loot-assets'
         },
         'Modders/process-avatars',
-        'Modders/change-animations',
+        
         {
           type: 'category',
           label: 'Manifest Files',
@@ -29,8 +30,10 @@ const sidebars = {
             'Modders/manifest-files/overview',
             'Modders/manifest-files/character-select',
             'Modders/manifest-files/character-traits',
+            'Modders/manifest-files/character-animations',
             'Modders/manifest-files/vrm-to-lora',
             'Modders/manifest-files/vrm-to-spritesheet',
+            'Modders/manifest-files/vrm-to-thumbnails',
             'Modders/manifest-files/ai-personalities',
             'Modders/manifest-files/generate-manifest-files',
           ]

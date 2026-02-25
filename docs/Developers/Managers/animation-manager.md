@@ -12,6 +12,7 @@ Manages animations for a character, including loading, playing, and controlling 
 Properties are not meant to be edited directly they are modified with methods.
 
   - `animationPaths`
+  - `defaultAnimationPaths`
   - `lastAnimID`
   - `mainControl`
   - `animationControl`
